@@ -82,7 +82,10 @@ async def send_email(
 
     return {"status": "Email sending initiated", "stdout": result.stdout, "stderr": result.stderr}
 
-if __name__ == "__main__":
-    # 使用 Render 提供的 PORT 環境變數，默認為 8000（以防變數不存在）
-    port = int(os.getenv("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+try:
+    if __name__ == "__main__":
+        port = int(os.getenv("PORT", 8000))
+        uvicorn.run(app, host="0.0.0.0", port=port)
+except Exception as e:
+    print(f"An error occurred: {e}")
+
