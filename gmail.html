@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Email</title>
+</head>
+<body>
+    <h1>Send Email</h1>
+    <form action="/send-email" method="post">
+        <label for="username">Gmail 帳號:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Gmail 密碼:</label>
+        <input type="password" id="password" name="password" required><br>
+        <label for="topic">標題:</label>
+        <input type="text" id="topic" name="topic" required><br>
+        <label for="message">訊息:</label>
+        <textarea id="message" name="message" required></textarea><br>
+        <label for="first">開頭前綴:</label>
+        <input type="text" id="first" name="first"><br>
+        <label for="address">Gmail 帳號後綴:</label>
+        <input type="text" id="address" name="address"><br>
+        <label for="grade_start">前一半數字從哪開始:</label>
+        <input type="text" id="grade_start" name="grade_start"><br>
+        <label for="grade_end">前一半數字到哪結束:</label>
+        <input type="text" id="grade_end" name="grade_end"><br>
+        <label for="id_start">後一半數字從哪開始:</label>
+        <input type="text" id="id_start" name="id_start"><br>
+        <label for="id_end">後一半數字到哪結束:</label>
+        <input type="text" id="id_end" name="id_end"><br>
+        <input type="submit" value="發送"><br>
+        <p>Creater: Matt Wu</p>
+        <p>IG: <a href="https://www.instagram.com/matt.wu.56679" target="_blank">@mattwu56679</a> for search help</p>
+    </form>
+</body>
+</html>
