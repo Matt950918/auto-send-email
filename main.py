@@ -3,12 +3,22 @@ from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
+from fastapi.middleware.cors import CORSMiddleware  # 新增這一行
 import uvicorn
 import subprocess
 import os
 
 app = FastAPI()
-# 設置範本目錄為 gmailcreate 文件夾內的 templates 目錄
+
+# 添加 CORS 支援
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 或者限制為您的前端域名，例如 "https://your-netlify-site.netlify.app"
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# 設置範本目錄
 base_dir = os.path.dirname(__file__)
 templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
 
@@ -62,7 +72,7 @@ async def send_email(
         f.write(f"{id_start}\n")
         f.write(f"{id_end}\n")
 
-     # 動態生成 text.py 路徑
+    # 動態生成 text.py 路徑
     script_path = os.path.join(base_dir, "text.py")
     result = subprocess.run(["python", script_path], capture_output=True, text=True)
 
@@ -73,4 +83,4 @@ async def send_email(
     return {"status": "Email sending initiated", "stdout": result.stdout, "stderr": result.stderr}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=10000)
+    uvicorn.run(app, host="0.0.0.0", port=10000)  # 修改為 0.0.0.0 和 Render 默認的 10000 埠
