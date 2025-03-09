@@ -33,7 +33,7 @@ class EmailRequest(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 async def send_email_form(request: Request):
     print("Handling GET request for /send-email")
-    return templates.TemplateResponse("gmail.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/send-email")
 async def send_email(
